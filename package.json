@@ -19,7 +19,9 @@
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
     "styled": "^1.0.0",
+    "styled-components": "^6.0.1",
     "typescript": "5.1.3"
   }
 }
