@@ -1,8 +1,12 @@
 "use client";
 import styles from "../page.module.css";
-import { StyledLogin } from "./Login.style";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import { StyledLogin } from "./Login.style";
+import mypic from "../../../public/image.png";
+
 const errorIcon = (
   <svg
     width="24"
@@ -46,129 +50,153 @@ export default function Home() {
 
   return (
     <StyledLogin>
-      <main className={styles.main}>
-        <div className="teste">
-          <h1 className="mainText">
-            Gerencie seu <span className="red">tempo</span>.
-          </h1>
-          <h1 className="mainText">work smarter</h1>
-        </div>
-        <div className="form">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label htmlFor="email">E-mail</label>
-              <input
-                className="baseInput"
-                type="text"
-                placeholder="email"
-                {...register("email", {
-                  required: true,
-                  pattern: /^\S+@\S+$/i,
-                })}
-                aria-invalid={errors.email ? "true" : "false"}
-              />
-              {errors.email?.type === "required" && (
-                <p className="error" role="alert">
-                  {errorIcon} Digite seu E-mail
-                </p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="senha">Senha</label>
-              <input
-                className="baseInput"
-                type={showPassword ? "text" : "password"}
-                placeholder="senha"
-                {...register("senha", { required: true })}
-              />
-              <span
-                className="eye"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {!showPassword ? (
-                  <svg
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 5.1084C8 5.1084 5 8.1084 2.5 12.1084C5 16.1084 8 19.1084 12 19.1084C16 19.1084 19 16.1084 21.5 12.1084C19 8.1084 16 5.1084 12 5.1084Z"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle
-                      cx="12"
-                      cy="12.1084"
-                      r="3"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.5 6.86702C15.0174 5.76247 13.3677 5.1084 11.5 5.1084C7.5 5.1084 4.5 8.1084 2 12.1084C3.33267 14.2407 4.80743 16.0888 6.5 17.3498"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M9.5 19.1084C15 19.6084 19 16.1084 21.5 12.1084C20.1673 9.97609 19 9.10838 19 9.10838"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M9.87871 14.2297C9.60014 13.9511 9.37916 13.6204 9.2284 13.2564C9.07763 12.8925 9.00004 12.5024 9.00004 12.1084C9.00004 11.7144 9.07763 11.3243 9.2284 10.9603C9.37916 10.5964 9.60014 10.2657 9.87871 9.98708C10.1573 9.7085 10.488 9.48752 10.852 9.33676C11.216 9.186 11.6061 9.1084 12 9.1084C12.394 9.1084 12.7841 9.186 13.1481 9.33676C13.5121 9.48752 13.8428 9.7085 14.1214 9.98708L12 12.1084L9.87871 14.2297Z"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                    />
-                    <line
-                      x1="19"
-                      y1="5.09835"
-                      x2="4.98995"
-                      y2="19.1084"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M15.3633 12.7452C15.3633 12.7452 15.4266 13.6819 14.5532 14.5553C13.6799 15.4287 12.7432 15.3653 12.7432 15.3653"
-                      stroke="#272727"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                    />
-                  </svg>
+      <div className="ola">
+        <div className={styles.main}>
+          <div className="imagePlaceHolder">
+            <Image
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+              src={mypic}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              alt="Picture of the author"
+            />
+          </div>
+          <main className="teste">
+            <h1 className="mainText">
+              Gerencie seu <span className="red">tempo</span>. work smarter
+            </h1>
+          </main>
+          <div className="form">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <label className="input" htmlFor="email">
+                  E-mail
+                </label>
+                <input
+                  className={`baseInput ${
+                    errors.email?.type === "required" ? "errorInput" : ""
+                  } `}
+                  type="text"
+                  placeholder="email"
+                  {...register("email", {
+                    required: true,
+                    pattern: /^\S+@\S+$/i,
+                  })}
+                  aria-invalid={
+                    errors.email?.type === "required" ? "true" : "false"
+                  }
+                />
+                {errors.email?.type === "required" && (
+                  <p className="error" role="alert">
+                    {errorIcon}{" "}
+                    <span className="errorMsg1"> Digite seu E-mail</span>
+                  </p>
                 )}
-              </span>
+              </div>
+              <div>
+                <label className="input" htmlFor="senha">
+                  Senha
+                </label>
+                <input
+                  className={`baseInput ${
+                    errors.senha?.type === "required" ? "errorInput" : ""
+                  } `}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="senha"
+                  {...register("senha", { required: true })}
+                />
+                <span
+                  className="eye"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {!showPassword ? (
+                    <svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5.1084C8 5.1084 5 8.1084 2.5 12.1084C5 16.1084 8 19.1084 12 19.1084C16 19.1084 19 16.1084 21.5 12.1084C19 8.1084 16 5.1084 12 5.1084Z"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12.1084"
+                        r="3"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.5 6.86702C15.0174 5.76247 13.3677 5.1084 11.5 5.1084C7.5 5.1084 4.5 8.1084 2 12.1084C3.33267 14.2407 4.80743 16.0888 6.5 17.3498"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9.5 19.1084C15 19.6084 19 16.1084 21.5 12.1084C20.1673 9.97609 19 9.10838 19 9.10838"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9.87871 14.2297C9.60014 13.9511 9.37916 13.6204 9.2284 13.2564C9.07763 12.8925 9.00004 12.5024 9.00004 12.1084C9.00004 11.7144 9.07763 11.3243 9.2284 10.9603C9.37916 10.5964 9.60014 10.2657 9.87871 9.98708C10.1573 9.7085 10.488 9.48752 10.852 9.33676C11.216 9.186 11.6061 9.1084 12 9.1084C12.394 9.1084 12.7841 9.186 13.1481 9.33676C13.5121 9.48752 13.8428 9.7085 14.1214 9.98708L12 12.1084L9.87871 14.2297Z"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                      />
+                      <line
+                        x1="19"
+                        y1="5.09835"
+                        x2="4.98995"
+                        y2="19.1084"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M15.3633 12.7452C15.3633 12.7452 15.4266 13.6819 14.5532 14.5553C13.6799 15.4287 12.7432 15.3653 12.7432 15.3653"
+                        stroke="#272727"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  )}
+                </span>
 
-              {errors.senha?.type === "required" && (
-                <p className="error" role="alert">
-                  {errorIcon}Digite sua senha
-                </p>
-              )}
-            </div>
-            <input
-              value="Entrar"
-              placeholder="Entrar"
-              className="button"
-              type="submit"
-            ></input>
-          </form>
+                {errors.senha?.type === "required" && (
+                  <div className="error top" role="alert">
+                    {errorIcon}
+                    <p>Digite sua senha</p>
+                  </div>
+                )}
+              </div>
+              <input
+                value="Entrar"
+                placeholder="Entrar"
+                className="button"
+                type="submit"
+              ></input>
+            </form>
+          </div>
         </div>
-      </main>
+      </div>
     </StyledLogin>
   );
 }
