@@ -97,6 +97,17 @@ const closeEye = (
     />
   </svg>
 );
+
+export const getData: any = async (data: any) => {
+  const res = await fetch("http://localhost:3001/authentication/login", {
+    method: "POST",
+    headers: { "Content-type": "aplication/json" },
+    body: JSON.stringify(data),
+  });
+  const response = await res.json();
+  return { props: { response } };
+};
+
 export default function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -105,8 +116,9 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: unknown): unknown => console.log(data);
-  console.log(errors);
+  const onSubmit = async (data: unknown) => {
+    const dataUser: any = (await getData(data)) as unknown;
+  };
 
   return (
     <StyledLogin>
@@ -160,16 +172,16 @@ export default function Login() {
                   )}
                 </div>
                 <div>
-                  <label className="input" htmlFor="senha">
+                  <label className="input" htmlFor="password">
                     Senha
                   </label>
                   <input
                     className={`baseInput ${
-                      errors.senha?.type === "required" ? "errorInput" : ""
+                      errors.password?.type === "required" ? "errorInput" : ""
                     } `}
                     type={showPassword ? "text" : "password"}
-                    placeholder="senha"
-                    {...register("senha", { required: true })}
+                    placeholder="password"
+                    {...register("password", { required: true })}
                   />
                   <span
                     className="eye"
@@ -178,7 +190,7 @@ export default function Login() {
                     {!showPassword ? openEye : closeEye}
                   </span>
 
-                  {errors.senha?.type === "required" && (
+                  {errors.password?.type === "required" && (
                     <div className="error top" role="alert">
                       {errorIcon}
                       <p>Digite sua senha</p>
