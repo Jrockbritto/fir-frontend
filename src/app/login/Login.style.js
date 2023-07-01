@@ -3,13 +3,12 @@ import { Inter } from "next/font/google";
 const StyledLogin = styled.div`
   background: #f7f8f9;
   display: flex;
-  justify-content: center;
   padding: 0.94rem;
 
   .button {
     font-family: "Urbanist", sans-serif;
     display: flex;
-    width: 22.5rem;
+    width: 100%;
     height: 3.5rem;
     padding: 1rem;
     justify-content: center;
@@ -18,31 +17,14 @@ const StyledLogin = styled.div`
     border-radius: 0.5rem;
     background: var(--neutrals-neutral-01, #272727);
     color: #f7f8f9;
+    cursor: pointer;
   }
 
   .button:hover {
-    display: flex;
-    width: 22.5rem;
-    height: 3.5rem;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.625rem;
-    flex-shrink: 0;
-    border-radius: 0.5rem;
     background: var(--neutrals-black, #1c1c1c);
   }
 
   .button:disable {
-    display: flex;
-    width: 22.5rem;
-    height: 3.5rem;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.625rem;
-    flex-shrink: 0;
-    border-radius: 0.5rem;
     opacity: 0.6000000238418579;
     background: var(--neutrals-neutral-02, #8391a1);
   }
@@ -73,7 +55,7 @@ const StyledLogin = styled.div`
   .eye {
     position: relative;
     bottom: 3.5rem;
-    left: 320px;
+    left: 90%;
     cursor: pointer;
   }
 
@@ -87,7 +69,7 @@ const StyledLogin = styled.div`
     line-height: 130%;
     letter-spacing: -0.36px;
     text-align: left;
-    margin: 1.875rem 0;
+    margin: 1.875rem 0 0;
     width: 100%;
   }
   .red {
@@ -101,6 +83,16 @@ const StyledLogin = styled.div`
     font-weight: 500;
     line-height: 125%;
     margin-bottom: 1;
+  }
+  .submainText {
+    color: var(--dark, #1e232c);
+    font-size: 36px;
+    font-family: "Inter", sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    line-height: 130%;
+    letter-spacing: -0.36px;
+    margin-bottom: 1.875rem;
   }
 
   .error {
@@ -130,6 +122,47 @@ const StyledLogin = styled.div`
 
   .top {
     margin-top: -2.2rem;
+  }
+
+  @media (min-width: 1200px) {
+    .imagePlaceHolder {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 20.6875rem;
+    }
+    .metade {
+      background: #d1e0ee;
+      display: flex;
+      width: 50vw;
+      justify-content: center;
+    }
+
+    .metade2 {
+      display: flex;
+      flex-direction: column;
+      width: 50vw;
+      justify-content: center;
+      padding: 154px;
+    }
+    .ola {
+      display: flex;
+      flex-direction: row;
+      max-width: 20000px !important;
+      height: 100%;
+      justify-content: start;
+      width: 100%;
+    }
+    .eye {
+      left: 90%;
+    }
+    padding: 0;
+  }
+
+  @media (max-width: 1199px) {
+    justify-content: center;
+    width: 100%;
   }
 `;
 

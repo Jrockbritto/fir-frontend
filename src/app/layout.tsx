@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Kronus",
-  description: "Sistema pra gestão inteligente do seu",
+  description: "Sistema pra gestão inteligente do seu tempo",
 };
 
 export default function RootLayout({
