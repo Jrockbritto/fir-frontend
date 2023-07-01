@@ -99,10 +99,11 @@ const closeEye = (
 );
 
 export const getData: any = async (data: any) => {
+  const { email, password } = data;
   const res = await fetch("http://localhost:3001/authentication/login", {
     method: "POST",
-    headers: { "Content-type": "aplication/json" },
-    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
   });
   const response = await res.json();
   return { props: { response } };
