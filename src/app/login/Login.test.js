@@ -1,9 +1,10 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import Home from "./Home";
+const { render, screen, fireEvent } = require("@testing-library/react");
+// import "@testing-library/jest-dom";
+const Home = require("./page");
 
 describe("Home component", () => {
   test("renders the form", () => {
-    render(<Home />);
+    render(Home);
 
     // Verify that the form inputs are rendered
     expect(screen.getByLabelText("E-mail")).toBeInTheDocument();
@@ -12,7 +13,7 @@ describe("Home component", () => {
   });
 
   test("submits the form with valid data", () => {
-    render(<Home />);
+    render(Home);
 
     // Fill in the form inputs
     fireEvent.change(screen.getByLabelText("E-mail"), {
@@ -32,7 +33,7 @@ describe("Home component", () => {
   });
 
   test("displays error messages for invalid form submission", () => {
-    render(<Home />);
+    render(Home);
 
     // Submit the form without filling in any inputs
     fireEvent.click(screen.getByRole("button", { name: "Entrar" }));

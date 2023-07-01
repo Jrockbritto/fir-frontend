@@ -1,8 +1,8 @@
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
+  preset: "ts-jest",
+  testEnvironment: "node",
+  verbose: true,
   bail: 1,
-  clearMocks: true,
-  collectCoverage: true,
-  collectCoverageFrom: ["components/**/*.js", "pages/**/*.js"],
-  coverageReporters: ["lcov", "text"],
+  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
 };
