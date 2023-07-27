@@ -29,6 +29,20 @@ const StyledLogin = styled.div`
     background: var(--neutrals-neutral-02, #8391a1);
   }
 
+  .alert {
+    margin: 30px 0;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+
+    color: var(--semantics-error, #882525);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 20px */
+  }
+
   .baseInput {
     display: flex;
     width: 100%;
