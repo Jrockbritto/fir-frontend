@@ -60,9 +60,9 @@ export default function Login() {
               <h1 className="submainText">Work smarter.</h1>
             </main>
             <div className="form">
-              {true && (
+              {false && (
                 <Alert className="alert" severity="error">
-                  Seu login e/ou senha estão incorretos{" "}
+                  Seu login e/ou senha estão incorretos
                 </Alert>
               )}
               <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Inter } from "next/font/google";
 const StyledLogin = styled.div`
   background: #f7f8f9;
   display: flex;
@@ -40,7 +39,7 @@ const StyledLogin = styled.div`
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 125%; /* 20px */
+    line-height: 125%;
   }
 
   .baseInput {
