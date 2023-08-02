@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-// import Alert from "@mui/material/Alert";
+import Alert from "@mui/material/Alert";
 
 import { StyledLogin } from "./Login.style";
 import mypic from "../../../public/image.png";
@@ -33,7 +33,11 @@ export default function Login() {
 
   const onSubmit = async (data: unknown) => {
     const dataUser: any = (await getData(data)) as unknown;
-    console.log(dataUser);
+    console.log(dataUser.props.response);
+    setHasError(false);
+    if (dataUser.props.response.error) {
+      setHasError(true);
+    }
   };
 
   return (
@@ -61,14 +65,14 @@ export default function Login() {
               <h1 className="submainText">Work smarter.</h1>
             </main>
             <div className="form">
-              {/* {false && (
+              {hasError && (
                 <Alert className="alert" severity="error">
                   Seu login e/ou senha estão incorretos
                 </Alert>
-              )} */}
+              )}
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                  <label className="input" htmlFor="email">
+                  <label className="label" htmlFor="email">
                     E-mail
                   </label>
                   <input
@@ -93,7 +97,7 @@ export default function Login() {
                   )}
                 </div>
                 <div>
-                  <label className="input" htmlFor="password">
+                  <label className="label" htmlFor="password">
                     Senha
                   </label>
                   <input

@@ -1,10 +1,9 @@
-const { render, screen, fireEvent } = require("@testing-library/react");
-// import "@testing-library/jest-dom";
-const Home = require("./page");
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Login } from "../login/page.tsx";
 
 describe("Home component", () => {
   test("renders the form", () => {
-    render(Home);
+    render(Login);
 
     // Verify that the form inputs are rendered
     expect(screen.getByLabelText("E-mail")).toBeInTheDocument();
@@ -33,7 +32,7 @@ describe("Home component", () => {
   });
 
   test("displays error messages for invalid form submission", () => {
-    render(Home);
+    render(Login);
 
     // Submit the form without filling in any inputs
     fireEvent.click(screen.getByRole("button", { name: "Entrar" }));

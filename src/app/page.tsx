@@ -1,5 +1,7 @@
+"use client";
 import styles from "./page.module.css";
 import Head from "next/head";
+import NextNProgress from "nextjs-progressbar";
 
 export default function Home() {
   <Head>
@@ -16,5 +18,10 @@ export default function Home() {
     ></link>
   </Head>;
 
-  return <main className={styles.main}>Beth é linda demais</main>;
+  return (
+    <>
+      <NextNProgress />
+      <main className={styles.main}>Beth é linda demais</main>
+    </>
+  );
 }

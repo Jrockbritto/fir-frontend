@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const StyledLogin = styled.div`
   background: #f7f8f9;
   display: flex;
@@ -88,7 +89,7 @@ const StyledLogin = styled.div`
   .red {
     color: #e44a4a;
   }
-  .input {
+  .label {
     color: var(--neutrals-neutral-01, #272727);
     font-size: 16px;
     font-family: "Urbanist", sans-serif;
