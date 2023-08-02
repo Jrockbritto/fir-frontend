@@ -1,14 +1,13 @@
 "use client";
-import styles from "../page.module.css";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 
 import { StyledLogin } from "./Login.style";
 import mypic from "../../../public/image.png";
 import { openEye, closeEye, errorIcon } from "./loginData";
+import GlobalStyles from "styles/globals";
 
 export const getData: any = async (data: any) => {
   const { email, password } = data;
@@ -42,7 +41,7 @@ export default function Login() {
 
   return (
     <StyledLogin>
-      <div className={styles.main} style={{ width: "100%" }}>
+      <div className="main" style={{ width: "100%" }}>
         <div className="ola">
           <div className="metade">
             <div className="imagePlaceHolder">

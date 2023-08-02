@@ -1,13 +1,12 @@
 "use client";
-import styles from "../page.module.css";
-import Image from "next/image";
+
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
 
 import { StyledCounter } from "./Counter.style";
 import { pause, play } from "./ConterData";
-import { Header } from "../components/header/Header";
+import { Header } from "components/Header/Header";
 
 export default function Counter() {
   const [isStopped, setIsStopped] = useState<boolean>(true);
@@ -46,7 +45,7 @@ export default function Counter() {
       <StyledCounter>
         <Header />
         <div
-          className={styles.main}
+          className="main"
           style={{
             display: "flex",
             justifyContent: "center",

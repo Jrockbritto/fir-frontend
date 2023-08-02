@@ -1,14 +1,14 @@
 "use client";
-import styles from "../page.module.css";
-import React, { useState } from "react";
+
+import React from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { StyledAccessControl } from "./AccessControl.style";
-import { Header } from "../components/header/Header";
-import { Breadcrumb } from "../components/BreadCrumb/BreadCrumb";
+import { Header } from "components/Header/Header"; 
+import { Breadcrumb } from "components/BreadCrumb/BreadCrumb"; 
 
 export default function AccessControl() {
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function AccessControl() {
     <StyledAccessControl>
       <Header />
       <div
-        className={styles.main}
+        className='main'
         style={{
           display: "flex",
           justifyContent: "center",
