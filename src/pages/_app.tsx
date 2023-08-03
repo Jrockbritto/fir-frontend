@@ -3,10 +3,19 @@ import Head from "next/head";
 
 import GlobalStyles from "styles/globals";
 import RootLayout from "./layout";
+import { SWRConfig } from "swr";
+import fetchJson from "lib/fetchJson";
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <SWRConfig
+      value={{
+        fetcher: fetchJson,
+        onError: (err) => {
+          console.error(err)
+        },
+      }}
+    >
       <Head>
         <title>{`Kronus`}</title>
         <meta
@@ -25,7 +34,7 @@ function App({ Component, pageProps }: AppProps) {
       <RootLayout>
         <Component {...pageProps} />
       </RootLayout>
-    </>
+    </SWRConfig>
   );
 }
 
