@@ -1,15 +1,17 @@
-export type UserData = {
+type UserData = {
   id: string;
-	name: string;
-	lastName: string;
-	email: string;
-	createdAt: string;
-	updatedAt: string;
-	deletedAt: string;
-}
+  name: string;
+  lastName: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
+};
 
-export type User = {
+type User = {
   isLoggedIn: boolean;
   userData: UserData;
   token: string;
 };
+
+export { User, UserData };

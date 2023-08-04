@@ -47,7 +47,7 @@ const StyledLogin = styled.div`
     display: flex;
     width: 100%;
     height: 56px;
-    padding: 16px;
+    padding: 16px 4rem 16px 16px;
     align-items: center;
     gap: 10px;
     align-self: stretch;

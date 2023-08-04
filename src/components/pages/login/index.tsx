@@ -16,9 +16,9 @@ export default function LoginComponent() {
   const [hasError, setHasError] = useState<boolean>(false);
 
   const { mutateUser } = useUser({
-    redirectTo: '/counter',
+    redirectTo: "/counter",
     redirectIfFound: true,
-  })
+  });
 
   const {
     register,
@@ -26,13 +26,14 @@ export default function LoginComponent() {
     formState: { errors },
   } = useForm();
 
+  const onSubmit = async (data: React.FormEvent<HTMLFormElement>) => {
+    // data.
+    const { email, password } = data.currentTarget.elements;
 
-  const onSubmit =  (async (data: React.FormEvent<HTMLFormElement>) => {
-    data.
-    const loginData = await userLogin({ email, password })
+    const loginData = await userLogin({ email, password });
     console.log(loginData);
     setHasError(false);
-  });
+  };
 
   return (
     <StyledLogin>
