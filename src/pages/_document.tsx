@@ -5,14 +5,14 @@ import Document, {
   NextScript,
   DocumentContext,
   DocumentInitialProps,
-} from 'next/document'
- 
+} from "next/document";
+
 class MyDocument extends Document {
   static async getInitialProps(
-    ctx: DocumentContext
+    ctx: DocumentContext,
   ): Promise<DocumentInitialProps> {
-    const originalRenderPage = ctx.renderPage
- 
+    const originalRenderPage = ctx.renderPage;
+
     // Run the React rendering logic synchronously
     ctx.renderPage = () =>
       originalRenderPage({
@@ -20,14 +20,14 @@ class MyDocument extends Document {
         enhanceApp: (App) => App,
         // Useful for wrapping in a per-page basis
         enhanceComponent: (Component) => Component,
-      })
- 
+      });
+
     // Run the parent `getInitialProps`, it now includes the custom `renderPage`
-    const initialProps = await Document.getInitialProps(ctx)
- 
-    return initialProps
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return initialProps;
   }
- 
+
   render() {
     return (
       <Html lang="en">
@@ -37,8 +37,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
- 
-export default MyDocument
+
+export default MyDocument;
