@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 
 import { StyledLogin } from "./Login.style";
 import mypic from "../../../../public/image.png";
-import { openEye, closeEye, errorIcon } from "./loginData";
+import { openEye, closeEye, errorIcon, personFill } from "./loginData";
 import useUser from "lib/user/useUser";
 import { userLogin } from "api/services/login";
 import { LoginRequestData } from "models/login";
@@ -123,6 +123,7 @@ export default function LoginComponent() {
                   className="button"
                   type="submit"
                 ></input>
+                {personFill}
               </form>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
     align-items: center;
     min-height: 100vh;
     width: 100%;
+    background:#FFFFFF
   }
 `;
 
