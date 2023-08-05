@@ -4,18 +4,18 @@ import { User } from "models/user";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import dynamic from "next/dynamic";
 
-const AccessControlPage = dynamic(
-  () => import("components/pages/AccessControl"),
+const AddUserPage = dynamic(
+  () => import("components/pages/AccessControl/AddUser"),
   {
     ssr: true,
   },
 );
 
-const AccessControl = (
+const AddUser = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>,
-) => <AccessControlPage {...props} />;
+) => <AddUserPage {...props} />;
 
-export default AccessControl;
+export default AddUser;
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
   async function ({ req, res }) {
