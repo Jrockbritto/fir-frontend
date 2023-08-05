@@ -12,6 +12,6 @@ export type UserData = {
 
 export type User = {
   userData: UserData;
-  token: string;
+  token?: string;
   login: LoginRequestData;
 };
