@@ -1,3 +1,5 @@
+import { LoginRequestData } from "models/login";
+
 export type UserData = {
   id: string;
 	name: string;
@@ -9,7 +11,7 @@ export type UserData = {
 }
 
 export type User = {
-  isLoggedIn: boolean;
   userData: UserData;
   token: string;
+	login: LoginRequestData;
 };

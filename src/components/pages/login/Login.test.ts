@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Login } from "../login/page.tsx";
+import { Login } from "./page.jsx";
 
 describe("Home component", () => {
   test("renders the form", () => {

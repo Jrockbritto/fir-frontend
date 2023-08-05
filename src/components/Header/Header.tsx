@@ -1,14 +1,16 @@
 import React from "react";
-import { StyledHeader } from "./Header.style";
+import { StyledButtons, StyledHeader } from "./Header.style";
 import Avatar from "@mui/material/Avatar";
+import { Logout } from "components/pages/Logout";
 
 const Header = () => (
   <StyledHeader>
     <header>
       <div>logo</div>
-      <div>
+      <StyledButtons>
         <Avatar sx={{ bgcolor: "#E44A4A" }}>E</Avatar>
-      </div>
+        <Logout />
+      </StyledButtons>
     </header>
   </StyledHeader>
 );

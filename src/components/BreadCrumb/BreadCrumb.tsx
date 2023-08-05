@@ -18,7 +18,6 @@ const Breadcrumb = (props: { actualPage: number }) => {
   ) => {
     event.preventDefault();
     router.push(routes[pagina]);
-    console.log(event);
   };
   const breadcrumbs = [
     <Link

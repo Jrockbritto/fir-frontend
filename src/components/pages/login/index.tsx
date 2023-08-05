@@ -1,38 +1,58 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import Alert from "@mui/material/Alert";
 
-import { StyledLogin } from "./Login.style";
 import mypic from "../../../../public/image.png";
-import { openEye, closeEye, errorIcon } from "./loginData";
 import useUser from "lib/user/useUser";
-import { userLogin } from "api/services/login";
 import { LoginRequestData } from "models/login";
+import fetchJson, { FetchError } from "lib/fetchJson";
+import { StyledLogin } from "./Login.style";
+import { closeEye, errorIcon, openEye } from "./loginData";
 
 export default function LoginComponent() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
   const { mutateUser } = useUser({
-    redirectTo: '/counter',
+    redirectTo: "/counter",
     redirectIfFound: true,
-  })
+  });
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const onSubmit = async function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
 
-  const onSubmit =  (async (data: React.FormEvent<HTMLFormElement>) => {
-    data.
-    const loginData = await userLogin({ email, password })
-    console.log(loginData);
-    setHasError(false);
-  });
+    const body: LoginRequestData = {
+      email: event.currentTarget.email.value,
+      password: event.currentTarget.password.value,
+    };
+
+    try {
+      mutateUser(
+        await fetchJson("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }),
+        false,
+      );
+      setHasError(false);
+    } catch (error) {
+      if (error instanceof FetchError) {
+        setHasError(true);
+      } else {
+        console.error("An unexpected error happened:", error);
+      }
+    }
+  };
 
   return (
     <StyledLogin>

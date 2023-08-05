@@ -1,1 +1,0 @@
-const route = "/authentication/login";
