@@ -2,7 +2,6 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { withIronSessionSsr } from "iron-session/next";
 
 import { sessionOptions } from "lib/login/session";
-import { User } from "models/user";
 import LoginComponent from "components/pages/Login";
 
 const Login = (

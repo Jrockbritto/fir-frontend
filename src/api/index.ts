@@ -1,22 +1,22 @@
-import { api, URL } from './config'
-import { RequestProps } from './typings'
+import { api, URL } from "./config";
+import { RequestProps } from "./typings";
 
 export function Api() {
   function request({
     path,
-    options: { method = 'GET', body, config }
+    options: { method = "GET", body, config },
   }: RequestProps) {
-    api.defaults.baseURL = URL
+    api.defaults.baseURL = URL;
 
     return api({
       method,
       url: path,
       data: body,
-      ...config
-    })
+      ...config,
+    });
   }
 
   return {
-    request
-  }
+    request,
+  };
 }

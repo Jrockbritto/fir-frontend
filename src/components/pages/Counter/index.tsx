@@ -16,7 +16,7 @@ export default function Counter(props: any) {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  const handleCLick = async(event: any) => {
+  const handleCLick = async (event: any) => {
     event.preventDefault();
     setIsStopped(!isStopped);
     await handleCounter(user.token);

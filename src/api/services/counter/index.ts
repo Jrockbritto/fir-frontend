@@ -3,16 +3,16 @@ import { RequestProps } from "api/typings";
 
 export const handleCounter = (token: string) => {
   const props: RequestProps = {
-    path: 'time',
+    path: "time",
     options: {
       method: "POST",
       config: {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       },
-    }
-  }
+    },
+  };
   return Api().request(props);
-}
+};

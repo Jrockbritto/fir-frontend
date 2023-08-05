@@ -11,17 +11,12 @@ export const sessionOptions: IronSessionOptions = {
   },
 };
 
-<<<<<<< HEAD
 export function withSessionRoute(handler: NextApiHandler) {
   return withIronSessionApiRoute(handler, sessionOptions);
 }
 
 declare module "iron-session" {
   export interface IronSessionData {
-=======
-declare module "iron-session" {
-  interface IronSessionData {
->>>>>>> e08eb5f37b9d4418793ce1f1f3760d1cea05faf3
     user?: User;
   }
 }

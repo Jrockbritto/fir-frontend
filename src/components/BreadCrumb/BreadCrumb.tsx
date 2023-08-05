@@ -57,7 +57,6 @@ const Breadcrumb = (props: { actualPage: number }) => {
         </p>
       </Link>
     ),
-    ,
   ];
   return (
     <StyledBreadCrumb>
