@@ -1,21 +1,21 @@
-import axios from 'axios'
-import env from '../../../config/env'
+import axios from "axios";
+import env from "../../../config/env";
 
-const URL = env().backUrl
+const URL = env().backUrl;
 
 const api = axios.create({
   baseURL: URL,
   headers: {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json",
   },
-  withCredentials: true
-})
+  withCredentials: true,
+});
 
 api.interceptors.response.use(
   async (response) => response,
   async (error) => {
-    console.log('erroAxios', error);
-  }
-)
+    console.log("erroAxios", error);
+  },
+);
 
-export { api, URL }
+export { api, URL };
