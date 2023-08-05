@@ -49,7 +49,7 @@ export default function LoginComponent() {
       if (error instanceof FetchError) {
         setHasError(true);
       } else {
-        console.error("An unexpected error happened:", error);
+        console.error("An unexpected error happened:", JSON.stringify(error));
       }
     }
   };

@@ -13,9 +13,10 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
       const { data } = await userLogin({ email, password });
       req.session.user = data;
       await req.session.save();
-      res.end(res.status(302).setHeader("location", "/counter").json(data));
-
-      return data;
+      res.setHeader("location", "/counter");
+      res.json(data);
+      res.statusCode = 302;
+      res.end();
     }
   } catch (error) {
     res.status(500).json({ message: (error as Error).message });
