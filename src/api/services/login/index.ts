@@ -4,16 +4,16 @@ import { LoginRequestData } from "models/login";
 
 export const userLogin = ({ email, password }: LoginRequestData) => {
   const props: RequestProps = {
-    path: 'authentication/login',
+    path: "authentication/login",
     options: {
       method: "POST",
       body: { email, password },
       config: {
         headers: {
-          'Content-Type': 'application/json',
-        }
+          "Content-Type": "application/json",
+        },
       },
-    }
-  }
+    },
+  };
   return Api().request(props);
-}
+};

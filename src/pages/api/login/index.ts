@@ -19,6 +19,6 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
       res.end();
     }
   } catch (error) {
-    res.status(500).json({ message: (error as Error).message })
+    res.status(500).json({ message: (error as Error).message });
   }
 }

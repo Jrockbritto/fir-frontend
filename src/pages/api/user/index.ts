@@ -6,24 +6,23 @@ export default withSessionRoute(userRoute);
 
 async function userRoute(req: NextApiRequest, res: NextApiResponse<User>) {
   if (req.session.user) {
-    
-    res.json({...req.session.user})
+    res.json({ ...req.session.user });
   } else {
     res.json({
       userData: {
-        id: '',
-        name: '',
-        lastName: '',
-        email: '',
-        createdAt: '',
-        updatedAt: '',
-        deletedAt: ''
+        id: "",
+        name: "",
+        lastName: "",
+        email: "",
+        createdAt: "",
+        updatedAt: "",
+        deletedAt: "",
       },
-      token: '',
+      token: "",
       login: {
         email: "",
-        password: ""
-      }
-    })
+        password: "",
+      },
+    });
   }
 }

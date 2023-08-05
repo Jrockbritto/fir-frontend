@@ -7,8 +7,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { StyledAccessControl } from "./AccessControl.style";
-import { Header } from "components/Header/Header"; 
-import { Breadcrumb } from "components/BreadCrumb/BreadCrumb"; 
+import { Header } from "components/Header/Header";
+import { Breadcrumb } from "components/BreadCrumb/BreadCrumb";
 
 export default function AccessControl() {
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function AccessControl() {
     <StyledAccessControl>
       <Header />
       <div
-        className='main'
+        className="main"
         style={{
           display: "flex",
           justifyContent: "center",
