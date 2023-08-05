@@ -1,9 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+<<<<<<< HEAD
 import { Login } from "./page.jsx";
+=======
+import { LoginComponent } from "./index";
+>>>>>>> 17262fc276741ab09e82e3db73abc02c7dc8e79d
 
 describe("Home component", () => {
   test("renders the form", () => {
-    render(Login);
+    render(LoginComponent);
 
     // Verify that the form inputs are rendered
     expect(screen.getByLabelText("E-mail")).toBeInTheDocument();
@@ -12,7 +16,7 @@ describe("Home component", () => {
   });
 
   test("submits the form with valid data", () => {
-    render(Home);
+    render(Login);
 
     // Fill in the form inputs
     fireEvent.change(screen.getByLabelText("E-mail"), {
@@ -42,3 +46,4 @@ describe("Home component", () => {
     expect(screen.getByText("Digite sua senha")).toBeInTheDocument();
   });
 });
+import LoginComponent from "./index.jsx";

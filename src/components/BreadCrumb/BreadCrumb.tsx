@@ -11,7 +11,7 @@ const Breadcrumb = (props: { actualPage: number }) => {
   const { actualPage } = props;
   const router = useRouter();
 
-  const routes = ["/", "/AccessControl", "/AccessControl/AddNewUser"];
+  const routes = ["/", "/access-control", "/access-control/AddNewUser"];
   const handleClickHome = (
     event: React.MouseEvent<HTMLSpanElement, MouseEvent>,
     pagina: number,
@@ -64,7 +64,6 @@ const Breadcrumb = (props: { actualPage: number }) => {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
         }}
       >
         <Breadcrumbs
