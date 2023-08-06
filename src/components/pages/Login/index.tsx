@@ -11,7 +11,7 @@ import fetchJson, { FetchError } from "lib/fetchJson";
 import { StyledLogin } from "./Login.style";
 import { closeEye, errorIcon, openEye } from "./loginData";
 
-export default function LoginComponent() {
+export const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
@@ -149,4 +149,4 @@ export default function LoginComponent() {
       </div>
     </StyledLogin>
   );
-}
+};
