@@ -17,7 +17,7 @@ import {
 
 export default function AccessControl() {
   const router = useRouter();
-  const tamanho = 6;
+  const tamanho = 6; // eslint-disable-line no-use-before-define
   const [showPassword, setShowPassword] = useState(false);
   const [isAddingNewUser, setIsAddingNewUser] = useState(true);
 
@@ -39,7 +39,7 @@ export default function AccessControl() {
 
   const {
     register,
-    handleSubmit,
+    handleSubmit, // eslint-disable-line no-use-before-define
     formState: { errors },
   } = useForm<ValidationSchema>({
     resolver: zodResolver(schema),

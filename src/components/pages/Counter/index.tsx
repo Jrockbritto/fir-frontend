@@ -13,8 +13,8 @@ export default function Counter(props: any) {
   const { user } = props;
   const [isStopped, setIsStopped] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
-  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(true); // eslint-disable-line no-use-before-define
+  const router = useRouter(); // eslint-disable-line no-use-before-define
 
   const handleCLick = async (event: any) => {
     event.preventDefault();
@@ -22,7 +22,7 @@ export default function Counter(props: any) {
     await handleCounter(user.token);
     return;
   };
-  const teste = () => <div> estou carregando</div>;
+  const teste = () => <div> estou carregando</div>; // eslint-disable-line no-use-before-define
 
   useEffect(() => {
     let intervalId: any;
