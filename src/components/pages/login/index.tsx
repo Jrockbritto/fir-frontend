@@ -34,7 +34,7 @@ export default function LoginComponent() {
     console.log(loginData);
     setHasError(false);
   };
-
+  console.log(errors);
   return (
     <StyledLogin>
       <div className="main" style={{ width: "100%" }}>

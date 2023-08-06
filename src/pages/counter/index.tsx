@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
-import NextNProgress from "nextjs-progressbar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Pagination from "@mui/material/Pagination";
+import usePagination from "@mui/material/usePagination";
 
 import { StyledCounter } from "./Counter.style";
 import { pause, play } from "./ConterData";
@@ -23,7 +28,42 @@ export default function Counter() {
     });
     return;
   };
-  const teste = () => <div> estou carregando</div>;
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  type TabPanelProps = {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+  };
+
+  const a11yProps = (index: number) => ({
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  });
+
+  function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
 
   useEffect(() => {
     let intervalId: any;
@@ -40,21 +80,28 @@ export default function Counter() {
   const seconds = Math.floor((time % 6000) / 100);
 
   return (
-    <Suspense fallback={<p>Loading feed...</p>}>
-      <NextNProgress />
-      <StyledCounter>
-        <Header />
-        <div
-          className="main"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "100%",
-            background: "#F7F8F9",
-          }}
+    <StyledCounter>
+      <Header />
+      <div
+        className="main"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+          background: "#F7F8F9",
+        }}
+      >
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
         >
+          <Tab label="Hoje" {...a11yProps(0)} />
+          <Tab label="Histórico de registros" {...a11yProps(1)} />
+        </Tabs>
+        <CustomTabPanel value={value} index={0}>
           <div>
             <h2>Hey, Elizabeth 🤙</h2>
             <h4>Designer de produto</h4>
@@ -70,7 +117,7 @@ export default function Counter() {
               </h1>
             </div>
           </div>
-          <div>
+          <>
             <button
               onClick={(e) => handleCLick(e)}
               className={`button ${isStopped ? "stopped" : "active"}`}
@@ -87,9 +134,16 @@ export default function Counter() {
                 </>
               )}
             </button>
+          </>
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={1}>
+          <div>
+            <h2>Histórico de registros</h2>
+            <p>Exibindo 5 de 76 registros</p>
+            <Pagination count={10} variant="outlined" shape="rounded" />
           </div>
-        </div>
-      </StyledCounter>
-    </Suspense>
+        </CustomTabPanel>
+      </div>
+    </StyledCounter>
   );
 }
