@@ -13,7 +13,7 @@ import {
   errorIcon,
   openEye,
   personFill,
-} from "components/pages/TEste/loginData";
+} from "components/pages/Login/loginData";
 
 export default function AccessControl() {
   const router = useRouter();
