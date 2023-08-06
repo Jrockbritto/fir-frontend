@@ -2,7 +2,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { withIronSessionSsr } from "iron-session/next";
 
 import { sessionOptions } from "lib/login/session";
-import LoginComponent from "components/pages/Login";
+import { LoginComponent } from "components/pages/Login";
 
 const Login = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>,
