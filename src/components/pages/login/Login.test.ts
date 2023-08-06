@@ -1,5 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+<<<<<<< HEAD
+import { Login } from "./page.jsx";
+=======
 import { LoginComponent } from "./index";
+>>>>>>> 17262fc276741ab09e82e3db73abc02c7dc8e79d
 
 describe("Home component", () => {
   test("renders the form", () => {

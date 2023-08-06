@@ -1,5 +1,7 @@
 import { IronSessionOptions } from "iron-session";
+import { withIronSessionApiRoute } from "iron-session/next";
 import { User } from "models/user";
+import { NextApiHandler } from "next";
 
 export const sessionOptions: IronSessionOptions = {
   password: process.env.NEXT_PUBLIC_SECRET_COOKIE_PASSWORD as string,
@@ -9,8 +11,12 @@ export const sessionOptions: IronSessionOptions = {
   },
 };
 
+export function withSessionRoute(handler: NextApiHandler) {
+  return withIronSessionApiRoute(handler, sessionOptions);
+}
+
 declare module "iron-session" {
-  interface IronSessionData {
+  export interface IronSessionData {
     user?: User;
   }
 }

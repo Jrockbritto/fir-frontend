@@ -1,9 +1,8 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { withIronSessionSsr } from "iron-session/next";
 
-import LoginComponent from "components/pages/login";
-
 import { sessionOptions } from "lib/login/session";
+import LoginComponent from "components/pages/Login";
 
 const Login = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>,
@@ -12,19 +11,39 @@ const Login = (
 export default Login;
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
-  ({ req, res }) => {
+  async function ({ req, res }) {
     const user = req.session.user;
 
     if (user) {
-      const props = { user };
-      res.setHeader("location", "/");
+      res.setHeader("location", "/counter");
       res.statusCode = 302;
       res.end();
-      return { props };
+      return {
+        props: {
+          user,
+        },
+      };
     }
 
     return {
-      props: { user: {} },
+      props: {
+        user: {
+          userData: {
+            id: "",
+            name: "",
+            lastName: "",
+            email: "",
+            createdAt: "",
+            updatedAt: "",
+            deletedAt: "",
+          },
+          token: "",
+          login: {
+            email: "",
+            password: "",
+          },
+        },
+      },
     };
   },
   sessionOptions,

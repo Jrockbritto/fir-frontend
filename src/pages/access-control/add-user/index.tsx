@@ -4,15 +4,18 @@ import { User } from "models/user";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import dynamic from "next/dynamic";
 
-const CounterPage = dynamic(() => import("components/pages/Counter"), {
-  ssr: true,
-});
+const AddUserPage = dynamic(
+  () => import("components/pages/AccessControl/AddUser"),
+  {
+    ssr: true,
+  },
+);
 
-const Counter = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => <CounterPage {...props} />;
+const AddUser = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>,
+) => <AddUserPage {...props} />;
 
-export default Counter;
+export default AddUser;
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
   async function ({ req, res }) {
@@ -33,5 +36,5 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
       props: { user: req.session.user },
     };
   },
-  sessionOptions
+  sessionOptions,
 );
