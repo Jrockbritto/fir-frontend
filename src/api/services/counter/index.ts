@@ -1,16 +1,15 @@
 import { Api } from "api";
 import { RequestProps } from "api/typings";
-import { LoginRequestData } from "models/login";
 
-export const userLogin = ({ email, password }: LoginRequestData) => {
+export const handleCounter = (token: string) => {
   const props: RequestProps = {
-    path: "authentication/login",
+    path: "time",
     options: {
       method: "POST",
-      body: { email, password },
       config: {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       },
     },

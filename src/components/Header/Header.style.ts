@@ -13,5 +13,9 @@ const StyledHeader = styled.div`
     position: absolute;
   }
 `;
+const StyledButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
-export { StyledHeader };
+export { StyledHeader, StyledButtons };

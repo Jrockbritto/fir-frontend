@@ -5,9 +5,6 @@ const URL = env().backUrl;
 
 const api = axios.create({
   baseURL: URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
   withCredentials: true,
 });
 

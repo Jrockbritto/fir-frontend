@@ -1,4 +1,6 @@
-type UserData = {
+import { LoginRequestData } from "models/login";
+
+export type UserData = {
   id: string;
   name: string;
   lastName: string;
@@ -8,10 +10,8 @@ type UserData = {
   deletedAt: string;
 };
 
-type User = {
-  isLoggedIn: boolean;
+export type User = {
   userData: UserData;
-  token: string;
+  token?: string;
+  login: LoginRequestData;
 };
-
-export { User, UserData };
