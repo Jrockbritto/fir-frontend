@@ -1,5 +1,3 @@
-import { createSvgIcon, SvgIconProps } from "@mui/material/utils"; // eslint-disable-line no-use-before-define
-
 const home = (
   <svg
     width="24"

@@ -17,7 +17,8 @@ import {
 
 export default function AccessControl() {
   const router = useRouter();
-  const tamanho = 6; // eslint-disable-line no-use-before-define
+  // eslint-disable-next-line no-unused-vars
+  const tamanho = 6;
   const [showPassword, setShowPassword] = useState(false);
   const [isAddingNewUser, setIsAddingNewUser] = useState(true);
 
@@ -39,7 +40,8 @@ export default function AccessControl() {
 
   const {
     register,
-    handleSubmit, // eslint-disable-line no-use-before-define
+    // eslint-disable-next-line no-unused-vars
+    handleSubmit,
     formState: { errors },
   } = useForm<ValidationSchema>({
     resolver: zodResolver(schema),
