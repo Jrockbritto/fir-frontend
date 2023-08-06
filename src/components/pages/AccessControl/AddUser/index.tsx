@@ -9,11 +9,11 @@ import { Header } from "components/Header/Header";
 import { Breadcrumb } from "components/BreadCrumb/BreadCrumb";
 import { StyledAddNewUser } from "./AddNewUser.style";
 import {
-  openEye,
   closeEye,
   errorIcon,
+  openEye,
   personFill,
-} from "./../../../components/pages/login/loginData";
+} from "components/pages/Login/loginData";
 
 export default function AccessControl() {
   const router = useRouter();
