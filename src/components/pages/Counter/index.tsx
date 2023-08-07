@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import Pagination from "@mui/material/Pagination";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation";
 // eslint-disable-next-line no-unused-vars
 import NextNProgress from "nextjs-progressbar";
@@ -56,11 +55,7 @@ export default function Counter(props: any) {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
+        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
       </div>
     );
   }
@@ -114,7 +109,7 @@ export default function Counter(props: any) {
         </Tabs>
         <CustomTabPanel value={value} index={0}>
           <div>
-            <h2>Hey, Elizabeth 🤙</h2>
+            <h2>Hey, {user.user.name} 🤙</h2>
             <h4>Designer de produto</h4>
           </div>
           <div className="counter">
