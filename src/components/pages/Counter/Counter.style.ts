@@ -54,7 +54,7 @@ const StyledCounter = styled.div`
     cursor:pointer;
     margin-top: 1.88rem;
     display: flex;
-    max-width: 22.5rem;
+    max-width: 31.5rem;
     width: 81vw;
     height: 3.5rem;
     padding: 1rem;
