@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
 import { LoginComponent } from ".";
+
+import { render, screen, fireEvent } from "@testing-library/react";
 
 describe("Home component", () => {
   test("renders the form", () => {

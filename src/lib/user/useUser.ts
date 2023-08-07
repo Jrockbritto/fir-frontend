@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import fetchJson from "@lib/fetchJson";
+
+import { User } from "@models/user";
+
 import Router, { useRouter } from "next/router";
+import { useEffect } from "react";
 import useSWR from "swr";
-import { User } from "models/user";
-import fetchJson from "lib/fetchJson";
 
 export default function useUser({
   redirectTo = "",

@@ -1,12 +1,14 @@
 {
   "extends": [
       "eslint:recommended",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "plugin:@next/next/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
+  "plugins": ["eslint-plugin-import-helpers"],
   "env": {
     "jest": true,
     "browser": true,
@@ -15,7 +17,24 @@
   "rules": {
     "camelcase": "off",
     "no-unsafe-optional-chaining": "error",
-    "default-param-last": "error"
+    "default-param-last": "error",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "/^@components/",
+          "/^@lib/",
+          "/^@pages/",
+          "/^@models/",
+          "/^@api/",
+          "/^@styles/",
+          "/^@public/",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
   },
   "globals": {
     "document": true,

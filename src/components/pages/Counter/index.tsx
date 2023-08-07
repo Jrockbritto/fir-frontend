@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import { Header } from "@components/Header/Header";
+
+import { handleCounter } from "@api/services/counter";
+
+import { pause, play } from "./ConterData";
+import { StyledCounter } from "./Counter.style";
+
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
-
-import { StyledCounter } from "./Counter.style";
-import { pause, play } from "./ConterData";
-import { Header } from "components/Header/Header";
-import { handleCounter } from "api/services/counter";
+import React, { useState, useEffect, Suspense } from "react";
 
 export default function Counter(props: any) {
   const { user } = props;
