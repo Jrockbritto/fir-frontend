@@ -1,10 +1,11 @@
+import fetchJson from "@lib/fetchJson";
+
+import RootLayout from "./layout";
+
 import { AppProps } from "next/app";
 import Head from "next/head";
-
 import GlobalStyles from "styles/globals";
-import RootLayout from "./layout";
 import { SWRConfig } from "swr";
-import fetchJson from "lib/fetchJson";
 
 function App({ Component, pageProps }: AppProps) {
   return (

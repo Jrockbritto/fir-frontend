@@ -1,17 +1,21 @@
 "use client";
-import Image from "next/image";
-import React, { FormEvent, useState } from "react";
-import { useForm } from "react-hook-form";
-import Alert from "@mui/material/Alert";
 
-import mypic from "../../../../public/image.png";
-import useUser from "lib/user/useUser";
-import { LoginRequestData } from "models/login";
-import fetchJson, { FetchError } from "lib/fetchJson";
+import fetchJson, { FetchError } from "@lib/fetchJson";
+import useUser from "@lib/user/useUser";
+
+import { LoginRequestData } from "@models/login";
+
+import loginImage from "@public/image.png";
+
 import { StyledLogin } from "./Login.style";
 import { closeEye, errorIcon, openEye } from "./loginData";
 
-export default function LoginComponent() {
+import Alert from "@mui/material/Alert";
+import Image from "next/image";
+import React, { FormEvent, useState } from "react";
+import { useForm } from "react-hook-form";
+
+export const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
@@ -65,7 +69,7 @@ export default function LoginComponent() {
                   width: "100%",
                   height: "auto",
                 }}
-                src={mypic}
+                src={loginImage}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="Picture of the author"
               />
@@ -149,4 +153,4 @@ export default function LoginComponent() {
       </div>
     </StyledLogin>
   );
-}
+};

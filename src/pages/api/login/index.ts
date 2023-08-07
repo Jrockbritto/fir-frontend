@@ -1,5 +1,7 @@
-import { userLogin } from "api/services/login";
-import { withSessionRoute } from "lib/login/session";
+import { withSessionRoute } from "@lib/login/session";
+
+import { userLogin } from "@api/services/login";
+
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default withSessionRoute(loginRoute);

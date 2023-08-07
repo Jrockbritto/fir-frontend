@@ -1,22 +1,24 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { Header } from "components/Header/Header";
-import { Breadcrumb } from "components/BreadCrumb/BreadCrumb";
-import { StyledAddNewUser } from "./AddNewUser.style";
+import { Breadcrumb } from "@components/BreadCrumb/BreadCrumb";
+import { Header } from "@components/Header/Header";
 import {
   closeEye,
   errorIcon,
   openEye,
   personFill,
-} from "components/pages/Login/loginData";
+} from "@components/pages/Login/loginData";
+
+import { StyledAddNewUser } from "./AddNewUser.style";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 export default function AccessControl() {
   const router = useRouter();
+  // eslint-disable-next-line no-unused-vars
   const tamanho = 6;
   const [showPassword, setShowPassword] = useState(false);
   const [isAddingNewUser, setIsAddingNewUser] = useState(true);
@@ -39,6 +41,7 @@ export default function AccessControl() {
 
   const {
     register,
+    // eslint-disable-next-line no-unused-vars
     handleSubmit,
     formState: { errors },
   } = useForm<ValidationSchema>({

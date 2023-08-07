@@ -1,5 +1,7 @@
-import { withSessionRoute } from "lib/login/session";
-import { User } from "models/user";
+import { withSessionRoute } from "@lib/login/session";
+
+import { User } from "@models/user";
+
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default withSessionRoute(userRoute);

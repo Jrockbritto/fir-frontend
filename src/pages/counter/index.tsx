@@ -1,6 +1,8 @@
+import { sessionOptions } from "@lib/login/session";
+
+import { User } from "@models/user";
+
 import { withIronSessionSsr } from "iron-session/next";
-import { sessionOptions } from "lib/login/session";
-import { User } from "models/user";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import dynamic from "next/dynamic";
 
@@ -9,7 +11,7 @@ const CounterPage = dynamic(() => import("components/pages/Counter"), {
 });
 
 const Counter = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
+  props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) => <CounterPage {...props} />;
 
 export default Counter;
@@ -33,5 +35,5 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
       props: { user: req.session.user },
     };
   },
-  sessionOptions
+  sessionOptions,
 );

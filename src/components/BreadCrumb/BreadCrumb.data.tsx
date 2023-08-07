@@ -1,5 +1,3 @@
-import { createSvgIcon, SvgIconProps } from "@mui/material/utils";
-
 const home = (
   <svg
     width="24"

@@ -1,7 +1,9 @@
-import React from "react";
+import { LogoutComponent } from "@components/pages/Logout";
+
 import { StyledButtons, StyledHeader } from "./Header.style";
+
 import Avatar from "@mui/material/Avatar";
-import { Logout } from "components/pages/Logout";
+import React from "react";
 
 const Header = () => (
   <StyledHeader>
@@ -9,7 +11,7 @@ const Header = () => (
       <div>logo</div>
       <StyledButtons>
         <Avatar sx={{ bgcolor: "#E44A4A" }}>E</Avatar>
-        <Logout />
+        <LogoutComponent />
       </StyledButtons>
     </header>
   </StyledHeader>
