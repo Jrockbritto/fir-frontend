@@ -11,7 +11,7 @@ const CounterPage = dynamic(() => import("components/pages/Counter"), {
 });
 
 const Counter = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
+  props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) => <CounterPage {...props} />;
 
 export default Counter;
@@ -35,5 +35,5 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
       props: { user: req.session.user },
     };
   },
-  sessionOptions
+  sessionOptions,
 );
