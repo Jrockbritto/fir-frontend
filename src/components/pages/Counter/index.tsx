@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "@components/Header/Header";
+import { StopWatch } from "@components/StopWatch";
 
 import { handleCounter } from "@api/services/counter";
 
@@ -15,8 +16,10 @@ import { useRouter } from "next/navigation";
 // eslint-disable-next-line no-unused-vars
 import NextNProgress from "nextjs-progressbar";
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense, createContext } from "react";
 import { clearInterval, setInterval } from "worker-timers";
+
+export const CounterContext = createContext<number[]>([]);
 
 export default function Counter(props: any) {
   const { user } = props;
@@ -60,30 +63,29 @@ export default function Counter(props: any) {
     );
   }
 
-  const handleCLick = async (event: any) => {
+  const handleCLick = (event: any) => {
     event.preventDefault();
+    handleCounter(user.token);
     setIsStopped(!isStopped);
-    await handleCounter(user.token);
-    return;
+    console.log("isStopped", isStopped);
+    counter();
+  };
+  const handleInterval = () => {
+    return setInterval(() => setTime(time + 1000), 1000);
+  };
+
+  const counter = () => {
+    let intervalId;
+    console.log("starting", isStopped);
+    if (!isStopped) {
+      intervalId = handleInterval();
+    } else {
+      console.log("stopping", intervalId);
+      if (intervalId) return clearInterval(intervalId);
+    }
   };
   // eslint-disable-next-line no-unused-vars
   const teste = () => <div> estou carregando</div>;
-
-  useEffect(() => {
-    let intervalId: any;
-    if (!isStopped) {
-      intervalId = setInterval(() => setTime(time + 1), 10);
-    }
-    return () => {
-      if (intervalId) return clearInterval(intervalId);
-    };
-  }, [isStopped, time]);
-
-  const hours = Math.floor(time / 360000);
-
-  const minutes = Math.floor((time % 360000) / 6000);
-
-  const seconds = Math.floor((time % 6000) / 100);
 
   return (
     <StyledCounter>
@@ -112,17 +114,15 @@ export default function Counter(props: any) {
             <h2>Hey, {user.user.name} 🤙</h2>
             <h4>Designer de produto</h4>
           </div>
-          <div className="counter">
-            <div className={`c-loader ${isStopped && "pause"}`}></div>
-            <div className="inner">
-              <p>Horas contabilizadas hoje</p>
-              <h1>
-                {hours.toString().padStart(2, "0")}:
-                {minutes.toString().padStart(2, "0")}:
-                {seconds.toString().padStart(2, "0")}
-              </h1>
+          <CounterContext.Provider value={[time]}>
+            <div className="counter">
+              <div className={`c-loader ${isStopped && "pause"}`}></div>
+              <div className="inner">
+                <p>Horas contabilizadas hoje</p>
+                <StopWatch />
+              </div>
             </div>
-          </div>
+          </CounterContext.Provider>
           <>
             <button
               onClick={(e) => handleCLick(e)}
