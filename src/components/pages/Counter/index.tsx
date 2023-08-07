@@ -13,7 +13,11 @@ import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+// eslint-disable-next-line no-unused-vars
+import NextNProgress from "nextjs-progressbar";
+// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect, Suspense } from "react";
+import { clearInterval, setInterval } from "worker-timers";
 
 export default function Counter(props: any) {
   const { user } = props;
@@ -75,7 +79,9 @@ export default function Counter(props: any) {
     if (!isStopped) {
       intervalId = setInterval(() => setTime(time + 1), 10);
     }
-    return () => clearInterval(intervalId);
+    return () => {
+      if (intervalId) return clearInterval(intervalId);
+    };
   }, [isStopped, time]);
 
   const hours = Math.floor(time / 360000);
