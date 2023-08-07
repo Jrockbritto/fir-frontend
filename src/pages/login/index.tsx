@@ -1,8 +1,9 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { withIronSessionSsr } from "iron-session/next";
+import { LoginComponent } from "@components/pages/Login";
 
-import { sessionOptions } from "lib/login/session";
-import LoginComponent from "components/pages/Login";
+import { sessionOptions } from "@lib/login/session";
+
+import { withIronSessionSsr } from "iron-session/next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 const Login = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>,

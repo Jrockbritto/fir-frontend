@@ -44,6 +44,4 @@ const play = (
   </svg>
 );
 
-const route = "Time";
-
 export { pause, play };

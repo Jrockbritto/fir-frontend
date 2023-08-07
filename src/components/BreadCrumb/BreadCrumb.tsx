@@ -1,11 +1,11 @@
-import React from "react";
+import { add, edit, home } from "./BreadCrumb.data";
+import { StyledBreadCrumb } from "./BreadCrumb.style";
+
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useRouter } from "next/navigation";
-
-import { StyledBreadCrumb } from "./BreadCrumb.style";
-import { add, home, edit } from "./BreadCrumb.data";
+import React from "react";
 
 const Breadcrumb = (props: { actualPage: number }) => {
   const { actualPage } = props;

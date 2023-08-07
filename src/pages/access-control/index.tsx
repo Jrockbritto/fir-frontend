@@ -1,6 +1,8 @@
+import { sessionOptions } from "@lib/login/session";
+
+import { User } from "@models/user";
+
 import { withIronSessionSsr } from "iron-session/next";
-import { sessionOptions } from "lib/login/session";
-import { User } from "models/user";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import dynamic from "next/dynamic";
 

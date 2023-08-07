@@ -1,11 +1,16 @@
-import useUser from "lib/user/useUser";
+"use client";
 
-export const Logout = () => {
+import useUser from "@lib/user/useUser";
+
+export const LogoutComponent = () => {
   const { logout } = useUser();
   const onClick = () => {
-    console.log("CLICKED");
     logout();
   };
 
-  return <button onClick={onClick}>Logout</button>;
+  return (
+    <>
+      <button onClick={onClick}>Logout</button>
+    </>
+  );
 };

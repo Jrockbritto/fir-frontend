@@ -1,9 +1,6 @@
+import { LoginComponent } from ".";
+
 import { render, screen, fireEvent } from "@testing-library/react";
-<<<<<<< HEAD
-import { Login } from "./page.jsx";
-=======
-import { LoginComponent } from "./index";
->>>>>>> 17262fc276741ab09e82e3db73abc02c7dc8e79d
 
 describe("Home component", () => {
   test("renders the form", () => {
@@ -16,7 +13,7 @@ describe("Home component", () => {
   });
 
   test("submits the form with valid data", () => {
-    render(Login);
+    render(LoginComponent);
 
     // Fill in the form inputs
     fireEvent.change(screen.getByLabelText("E-mail"), {
@@ -36,7 +33,7 @@ describe("Home component", () => {
   });
 
   test("displays error messages for invalid form submission", () => {
-    render(Login);
+    render(LoginComponent);
 
     // Submit the form without filling in any inputs
     fireEvent.click(screen.getByRole("button", { name: "Entrar" }));
@@ -46,4 +43,3 @@ describe("Home component", () => {
     expect(screen.getByText("Digite sua senha")).toBeInTheDocument();
   });
 });
-import LoginComponent from "./index.jsx";

@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
+import { Breadcrumb } from "@components/BreadCrumb/BreadCrumb";
+import { Header } from "@components/Header/Header";
 
 import { StyledAccessControl } from "./AccessControl.style";
-import { Header } from "components/Header/Header";
-import { Breadcrumb } from "components/BreadCrumb/BreadCrumb";
+
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function AccessControl() {
   const router = useRouter();

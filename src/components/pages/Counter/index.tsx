@@ -1,25 +1,23 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import { Header } from "@components/Header/Header";
+
+import { handleCounter } from "@api/services/counter";
+
+import { pause, play } from "./ConterData";
+import { StyledCounter } from "./Counter.style";
+
 import { useRouter } from "next/navigation";
 import NextNProgress from "nextjs-progressbar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Pagination from "@mui/material/Pagination";
-import
-
-import { StyledCounter } from "./Counter.style";
-import { pause, play } from "./ConterData";
-import { Header } from "components/Header/Header";
-import { handleCounter } from "api/services/counter";
+import React, { useState, useEffect, Suspense } from "react";
 
 export default function Counter(props: any) {
   const { user } = props;
   const [isStopped, setIsStopped] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState<boolean>(true);
+  // eslint-disable-next-line no-unused-vars
   const router = useRouter();
 
 
@@ -67,7 +65,8 @@ export default function Counter(props: any) {
     await handleCounter(user.token);
     return;
   };
-  
+  // eslint-disable-next-line no-unused-vars
+  const teste = () => <div> estou carregando</div>;
 
   useEffect(() => {
     let intervalId: any;
