@@ -17,7 +17,7 @@ const Counter = (
 export default Counter;
 
 export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
-  async function ({ req, res }) {
+  function ({ req, res }) {
     const user = req.session.user;
 
     if (!user) {

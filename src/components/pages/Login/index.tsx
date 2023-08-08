@@ -57,7 +57,7 @@ export const LoginComponent = () => {
       }
     }
   };
-  console.log(errors);
+
   return (
     <StyledLogin>
       <div className="main" style={{ width: "100%" }}>

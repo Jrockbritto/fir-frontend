@@ -1,17 +1,32 @@
-import { CounterContext } from "@components/pages/Counter";
+import { CounterContext } from "@contexts/counter";
 
 import { useContext, useEffect } from "react";
+import { clearInterval, setInterval } from "worker-timers";
 
 export const StopWatch = () => {
-  const [time] = useContext(CounterContext);
+  const { time, isStopped, setTime } = useContext(CounterContext);
 
-  const hours = Math.floor(time / 360000);
+  const hours = Math.floor(time / 3600);
 
-  const minutes = Math.floor((time % 3600) / 60000);
+  const minutes = Math.floor((time / 60) % 60);
 
-  const seconds = Math.floor((time % 100) / 1000);
+  const seconds = Math.floor(time % 60);
 
-  useEffect(() => console.log("time", time), [time]);
+  useEffect(() => {
+    let intervalId: any;
+
+    if (!isStopped) {
+      intervalId = setInterval(() => {
+        setTime((time) => time + 1);
+        console.log(time);
+      }, 1000);
+    }
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [isStopped]);
 
   return (
     <h1>

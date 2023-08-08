@@ -37,8 +37,14 @@
       "@styles/*": [
         "styles/*"
       ],
+      "@contexts/*": [
+        "contexts/*"
+      ],
       "@public/*": [
         "../public/*"
+      ],
+      "@config/*": [
+        "../config/*"
       ]
     },
     "plugins": [
