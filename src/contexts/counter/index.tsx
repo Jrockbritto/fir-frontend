@@ -1,4 +1,5 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { clearInterval, setInterval } from "worker-timers";
 
 type CounterIndexContext = {
   time: number;
@@ -16,6 +17,22 @@ export function CounterContextFunction(props: { children: React.ReactNode }) {
   const [isStopped, setIsStopped] = useState<boolean>(true);
 
   const { children } = props;
+
+  useEffect(() => {
+    let intervalId: any;
+
+    if (!isStopped) {
+      intervalId = setInterval(() => {
+        setTime((time) => time + 1);
+        console.log(time);
+      }, 1000);
+    }
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [isStopped]);
   return (
     <CounterContext.Provider
       value={{
