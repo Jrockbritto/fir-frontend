@@ -1,42 +1,35 @@
 "use client";
 
 import { Header } from "@components/Header/Header";
+import { StopWatch } from "@components/StopWatch";
+import { CustomTabPanel } from "@components/TabPanels";
+
+import useUser from "@lib/user/useUser";
 
 import { handleCounter } from "@api/services/counter";
+
+import { CounterContext } from "@contexts/counter";
 
 import { pause, play } from "./ConterData";
 import { StyledCounter } from "./Counter.style";
 
-import Box from "@mui/material/Box";
-import Pagination from "@mui/material/Pagination";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import { useRouter } from "next/navigation";
+import { Pagination, Tab, Tabs } from "@mui/material";
 // eslint-disable-next-line no-unused-vars
-import NextNProgress from "nextjs-progressbar";
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, Suspense } from "react";
-import { clearInterval, setInterval } from "worker-timers";
+import React, { useState, useContext } from "react";
 
 export default function Counter(props: any) {
   const { user } = props;
-  const [isStopped, setIsStopped] = useState<boolean>(true);
-  const [time, setTime] = useState<number>(0);
-  // eslint-disable-next-line no-unused-vars
-  const [loading, setLoading] = useState<boolean>(true);
-  // eslint-disable-next-line no-unused-vars
-  const router = useRouter();
 
+  useUser({
+    redirectTo: "/login",
+    redirectIfFound: false,
+  });
+
+  const { isStopped, setIsStopped } = useContext(CounterContext);
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
-  };
-
-  type TabPanelProps = {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
   };
 
   const a11yProps = (index: number) => ({
@@ -44,46 +37,11 @@ export default function Counter(props: any) {
     "aria-controls": `simple-tabpanel-${index}`,
   });
 
-  function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-      </div>
-    );
-  }
-
-  const handleCLick = async (event: any) => {
+  const handleCLick = (event: any) => {
     event.preventDefault();
+    handleCounter(user.token);
     setIsStopped(!isStopped);
-    await handleCounter(user.token);
-    return;
   };
-  // eslint-disable-next-line no-unused-vars
-  const teste = () => <div> estou carregando</div>;
-
-  useEffect(() => {
-    let intervalId: any;
-    if (!isStopped) {
-      intervalId = setInterval(() => setTime(time + 1), 10);
-    }
-    return () => {
-      if (intervalId) return clearInterval(intervalId);
-    };
-  }, [isStopped, time]);
-
-  const hours = Math.floor(time / 360000);
-
-  const minutes = Math.floor((time % 360000) / 6000);
-
-  const seconds = Math.floor((time % 6000) / 100);
 
   return (
     <StyledCounter>
@@ -108,19 +66,13 @@ export default function Counter(props: any) {
           <Tab label="Histórico de registros" {...a11yProps(1)} />
         </Tabs>
         <CustomTabPanel value={value} index={0}>
-          <div>
-            <h2>Hey, {user.user.name} 🤙</h2>
-            <h4>Designer de produto</h4>
-          </div>
+          <h2>Hey, {user.user.name} 🤙</h2>
+          <h4>Designer de produto</h4>
           <div className="counter">
             <div className={`c-loader ${isStopped && "pause"}`}></div>
             <div className="inner">
               <p>Horas contabilizadas hoje</p>
-              <h1>
-                {hours.toString().padStart(2, "0")}:
-                {minutes.toString().padStart(2, "0")}:
-                {seconds.toString().padStart(2, "0")}
-              </h1>
+              <StopWatch />
             </div>
           </div>
           <>
@@ -143,11 +95,9 @@ export default function Counter(props: any) {
           </>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <div>
-            <h2>Histórico de registros</h2>
-            <p>Exibindo 5 de 76 registros</p>
-            <Pagination count={10} variant="outlined" shape="rounded" />
-          </div>
+          <h2>Histórico de registros</h2>
+          <p>Exibindo 5 de 76 registros</p>
+          <Pagination count={10} variant="outlined" shape="rounded" />
         </CustomTabPanel>
       </div>
     </StyledCounter>

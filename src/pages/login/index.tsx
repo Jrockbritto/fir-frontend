@@ -28,22 +28,7 @@ export const getServerSideProps: GetServerSideProps = withIronSessionSsr(
 
     return {
       props: {
-        user: {
-          userData: {
-            id: "",
-            name: "",
-            lastName: "",
-            email: "",
-            createdAt: "",
-            updatedAt: "",
-            deletedAt: "",
-          },
-          token: "",
-          login: {
-            email: "",
-            password: "",
-          },
-        },
+        user: {},
       },
     };
   },

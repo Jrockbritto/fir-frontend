@@ -7,22 +7,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default withIronSessionApiRoute(logoutRoute, sessionOptions);
 
-function logoutRoute(req: NextApiRequest, res: NextApiResponse<User>) {
+async function logoutRoute(req: NextApiRequest, res: NextApiResponse<User>) {
   req.session.destroy();
-  res.json({
-    userData: {
-      id: "",
-      name: "",
-      lastName: "",
-      email: "",
-      createdAt: "",
-      updatedAt: "",
-      deletedAt: "",
-    },
-    login: {
-      email: "",
-      password: "",
-    },
-  });
+  res.setHeader("location", "/login");
+  res.json({} as User);
   res.end();
 }

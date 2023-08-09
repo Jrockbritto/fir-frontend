@@ -20,7 +20,6 @@ async function userRoute(req: NextApiRequest, res: NextApiResponse<User>) {
         updatedAt: "",
         deletedAt: "",
       },
-      token: "",
       login: {
         email: "",
         password: "",

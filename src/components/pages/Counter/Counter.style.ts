@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledCounter = styled.div`
   .c-loader {
-    border-radius: 50%;
+    border-radius: 100%;
     max-height: 500px;
     height:85vw;
     max-width: 500px;

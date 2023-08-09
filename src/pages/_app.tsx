@@ -1,5 +1,8 @@
 import fetchJson from "@lib/fetchJson";
 
+import { CounterContextFunction } from "@contexts/counter";
+import Compose from "@contexts/index";
+
 import RootLayout from "./layout";
 
 import { AppProps } from "next/app";
@@ -9,33 +12,35 @@ import { SWRConfig } from "swr";
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <SWRConfig
-      value={{
-        fetcher: fetchJson,
-        onError: (err) => {
-          console.error(err);
-        },
-      }}
-    >
-      <Head>
-        <title>{`Kronus`}</title>
-        <meta
-          name="description"
-          content={`Sistema pra gestão inteligente do seu tempo.`}
-        />
-        <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
-      </Head>
+    <Compose components={[CounterContextFunction]}>
+      <SWRConfig
+        value={{
+          fetcher: fetchJson,
+          onError: (err) => {
+            console.error(err);
+          },
+        }}
+      >
+        <Head>
+          <title>{`Kronus`}</title>
+          <meta
+            name="description"
+            content={`Sistema pra gestão inteligente do seu tempo.`}
+          />
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          />
+        </Head>
 
-      <GlobalStyles />
+        <GlobalStyles />
 
-      <RootLayout>
-        <Component {...pageProps} />
-      </RootLayout>
-    </SWRConfig>
+        <RootLayout>
+          <Component {...pageProps} />
+        </RootLayout>
+      </SWRConfig>
+    </Compose>
   );
 }
 
