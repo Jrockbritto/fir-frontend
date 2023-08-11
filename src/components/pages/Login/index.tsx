@@ -102,6 +102,7 @@ export const LoginComponent = () => {
                     {...register("email", {
                       required: true,
                       pattern: /^\S+@\S+$/i,
+                      max: 200,
                     })}
                     aria-invalid={
                       errors.email?.type === "required" ? "true" : "false"
@@ -124,7 +125,7 @@ export const LoginComponent = () => {
                     } `}
                     type={showPassword ? "text" : "password"}
                     placeholder="password"
-                    {...register("password", { required: true })}
+                    {...register("password", { required: true, max: 40 })}
                   />
                   <span
                     className="eye"

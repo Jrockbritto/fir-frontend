@@ -32,6 +32,7 @@
           "/^@public/",
           "/^@contexts/",
           "/^@config/",
+          "/^@utils/",
           ["parent", "sibling", "index"]
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }

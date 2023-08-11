@@ -1,3 +1,7 @@
+import { Header } from "@components/Header/Header";
+
+import useUser from "@lib/user/useUser";
+
 import React from "react";
 
 export default function RootLayout({
@@ -5,5 +9,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  const { user } = useUser();
+  return (
+    <>
+      <Header token={user?.token} />
+      {children}
+    </>
+  );
 }

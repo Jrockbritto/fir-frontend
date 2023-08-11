@@ -1,5 +1,5 @@
-export default  () => {
+export default () => {
   return {
-    backUrl: process.env.NEXT_PUBLIC_BACK_URL
-  }
-}
+    backUrl: process.env.NEXT_PUBLIC_BACK_URL,
+  };
+};

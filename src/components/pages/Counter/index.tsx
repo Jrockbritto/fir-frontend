@@ -1,31 +1,30 @@
 "use client";
 
-import { Header } from "@components/Header/Header";
-import { StopWatch } from "@components/StopWatch";
+import { CounterComponent } from "@components/CounterComponent";
 import { CustomTabPanel } from "@components/TabPanels";
+import { TimeListing } from "@components/TimeListing";
 
 import useUser from "@lib/user/useUser";
 
-import { handleCounter } from "@api/services/counter";
+import { StyledTab } from "@styles/tab";
 
-import { CounterContext } from "@contexts/counter";
+import { StyledCounter, TabsWrapper } from "./Counter.style";
+import { CounterPageProps } from "./typings";
 
-import { pause, play } from "./ConterData";
-import { StyledCounter } from "./Counter.style";
-
-import { Pagination, Tab, Tabs } from "@mui/material";
+import { Tabs } from "@mui/material";
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-export default function Counter(props: any) {
+export default function Counter(props: CounterPageProps) {
   const { user } = props;
+
+  console.log("user", user);
 
   useUser({
     redirectTo: "/login",
     redirectIfFound: false,
   });
 
-  const { isStopped, setIsStopped } = useContext(CounterContext);
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -37,69 +36,34 @@ export default function Counter(props: any) {
     "aria-controls": `simple-tabpanel-${index}`,
   });
 
-  const handleCLick = (event: any) => {
-    event.preventDefault();
-    handleCounter(user.token);
-    setIsStopped(!isStopped);
-  };
-
   return (
     <StyledCounter>
-      <Header />
-      <div
-        className="main"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
-          background: "#F7F8F9",
-        }}
-      >
+      <TabsWrapper>
+        <div>
+          <h2>Hey, {user.userData.name} 🤙</h2>
+          <h4>Designer de produto</h4>
+        </div>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          TabIndicatorProps={{
+            style: {
+              color: "#272727",
+              backgroundColor: "#0fba91",
+            },
+          }}
         >
-          <Tab label="Hoje" {...a11yProps(0)} />
-          <Tab label="Histórico de registros" {...a11yProps(1)} />
+          <StyledTab label="Hoje" {...a11yProps(0)} />
+          <StyledTab label="Histórico de registros" {...a11yProps(1)} />
         </Tabs>
         <CustomTabPanel value={value} index={0}>
-          <h2>Hey, {user.user.name} 🤙</h2>
-          <h4>Designer de produto</h4>
-          <div className="counter">
-            <div className={`c-loader ${isStopped && "pause"}`}></div>
-            <div className="inner">
-              <p>Horas contabilizadas hoje</p>
-              <StopWatch />
-            </div>
-          </div>
-          <>
-            <button
-              onClick={(e) => handleCLick(e)}
-              className={`button ${isStopped ? "stopped" : "active"}`}
-            >
-              {isStopped ? (
-                <>
-                  <span>Iniciar contador </span>
-                  <span className="playIcon">{play}</span>
-                </>
-              ) : (
-                <>
-                  <span> Pausar contador</span>
-                  <span className="pauseIcon"> {pause}</span>
-                </>
-              )}
-            </button>
-          </>
+          <CounterComponent user={user} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <h2>Histórico de registros</h2>
-          <p>Exibindo 5 de 76 registros</p>
-          <Pagination count={10} variant="outlined" shape="rounded" />
+          <TimeListing user={user} />
         </CustomTabPanel>
-      </div>
+      </TabsWrapper>
     </StyledCounter>
   );
 }

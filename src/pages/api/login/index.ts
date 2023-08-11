@@ -13,7 +13,7 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
     if (login) {
       const { email, password } = login;
       const { data } = await userLogin({ email, password });
-      req.session.user = data;
+      req.session.user = { userData: data.user, token: data.token };
       await req.session.save();
       res.setHeader("location", "/counter");
       res.json(data);

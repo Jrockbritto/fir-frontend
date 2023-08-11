@@ -1,3 +1,5 @@
+import { CounterPageProps } from "@components/pages/Counter/typings";
+
 import { sessionOptions } from "@lib/login/session";
 
 import { User } from "@models/user";
@@ -12,7 +14,7 @@ const CounterPage = dynamic(() => import("components/pages/Counter"), {
 
 const Counter = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>,
-) => <CounterPage {...props} />;
+) => <CounterPage {...(props as CounterPageProps)} />;
 
 export default Counter;
 

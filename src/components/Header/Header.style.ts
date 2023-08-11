@@ -10,7 +10,6 @@ const StyledHeader = styled.div`
     flex-shrink: 0;
     border-bottom: 1px solid var(--cool-gray-20, #dde1e6);
     background: #f7f8f9;
-    position: absolute;
   }
 `;
 const StyledButtons = styled.div`

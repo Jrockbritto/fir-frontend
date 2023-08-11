@@ -40,6 +40,9 @@
       "@contexts/*": [
         "contexts/*"
       ],
+      "@utils/*": [
+        "utils/*"
+      ],
       "@public/*": [
         "../public/*"
       ],

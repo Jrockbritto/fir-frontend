@@ -1,7 +1,11 @@
 "use client";
 import styled from "styled-components";
 
-const StyledCounter = styled.div`
+export const StyledCounter = styled.div`
+  background: #f7f8f9;
+  height: 100vh;
+  padding-top: 15px;
+
   .c-loader {
     border-radius: 100%;
     max-height: 500px;
@@ -114,7 +118,7 @@ const StyledCounter = styled.div`
     font-weight: 400;
     line-height: 125%; /* 1.25rem */
 
-    margin: 0.5rem 0 1.88rem 0;
+    margin: 0;
   }
   h2 {
     color: var(--dark, #1e232c);
@@ -151,4 +155,11 @@ const StyledCounter = styled.div`
   }
 `;
 
-export { StyledCounter };
+export const TabsWrapper = styled.div`
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+`;
