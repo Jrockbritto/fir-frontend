@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  compiler: {
-    // Enables the styled-components SWC transform
-    styledComponents: true
-  }
+  reactStrictMode: true,
+  styledComponents:
+    Boolean |
+    {
+      displayName: Boolean | undefined,
+      ssr: Boolean | undefined
+    }
 }
-
-
 module.exports = nextConfig
