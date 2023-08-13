@@ -15,6 +15,7 @@ const api = axios.create({
 api.interceptors.response.use(
   async (response) => response,
   async (error) => {
+    console.error(error);
     const path = window.location.pathname;
     const protectedPaths = ["/login"];
     const status = [401, 403];

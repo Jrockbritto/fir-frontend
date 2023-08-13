@@ -1,3 +1,5 @@
+import fetchJson from "@lib/fetchJson";
+
 import { Time } from "@models/time";
 
 import { getTimes } from "@api/services/time/getTimes";
@@ -34,17 +36,17 @@ export function TimeListing(props: TimeListingProps) {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getTimes({
-        userId: user.userData.id,
-        token: user.token,
-        queryParams: { page: 1 },
-      });
-
+      const data: GetTimeResponse = await fetchJson(
+        `/api/time?page=1&token=${user.token}&userId=${user.userData.id}`,
+        {
+          method: "GET",
+        },
+      );
+      console.log("i fire once");
       setData(data);
     }
-
     fetchData();
-  }, [user]);
+  }, []);
 
   return (
     <>

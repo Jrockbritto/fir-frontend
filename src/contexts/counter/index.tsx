@@ -2,8 +2,12 @@ import React, { createContext, useEffect, useState } from "react";
 import { clearInterval, setInterval } from "worker-timers";
 
 type CounterIndexContext = {
-  time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
+  start: number;
+  setStart: React.Dispatch<React.SetStateAction<number>>;
+  elapsed: number;
+  setElapsed: React.Dispatch<React.SetStateAction<number>>;
+  now: number;
+  setNow: React.Dispatch<React.SetStateAction<number>>;
   isStopped: boolean;
   setIsStopped: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -13,19 +17,25 @@ export const CounterContext = createContext<CounterIndexContext>(
 );
 
 export function CounterContextFunction(props: { children: React.ReactNode }) {
-  const [time, setTime] = useState<number>(0);
+  const [now, setNow] = useState<number>(0);
+  const [start, setStart] = useState<number>(0);
+  const [elapsed, setElapsed] = useState<number>(0);
   const [isStopped, setIsStopped] = useState<boolean>(true);
 
   const { children } = props;
+
+  const time = now - start + elapsed;
 
   useEffect(() => {
     let intervalId: any;
 
     if (!isStopped) {
+      setElapsed(() => time);
+      setStart(Date.now());
       intervalId = setInterval(() => {
-        setTime((time) => time + 1);
-        console.log(time);
-      }, 1000);
+        setNow(() => Date.now());
+        setElapsed(() => time);
+      }, 10);
     }
     return () => {
       if (intervalId) {
@@ -36,8 +46,12 @@ export function CounterContextFunction(props: { children: React.ReactNode }) {
   return (
     <CounterContext.Provider
       value={{
-        time,
-        setTime,
+        start,
+        setStart,
+        now,
+        setNow,
+        elapsed,
+        setElapsed,
         isStopped,
         setIsStopped,
       }}

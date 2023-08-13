@@ -2,10 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   styledComponents:
-    Boolean |
     {
-      displayName: Boolean | undefined,
-      ssr: Boolean | undefined
+      displayName: true,
+      ssr: true
     }
 }
 module.exports = nextConfig
