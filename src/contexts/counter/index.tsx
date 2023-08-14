@@ -34,12 +34,12 @@ export function CounterContextFunction(props: { children: React.ReactNode }) {
       setStart(Date.now());
       intervalId = setInterval(() => {
         setNow(() => Date.now());
-        setElapsed(() => time);
       }, 10);
     }
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
+        setElapsed(() => time);
       }
     };
   }, [isStopped]);
